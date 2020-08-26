@@ -34,9 +34,10 @@ class country extends Controller
 
     public function getUniversity(Request $request)
     {
-        $country = $request->countryname;
+        $country = urlencode($request->countryname);
+        $country2 = $request->countryname;
         $result = '';
-        $universityFind = University::where('country',$country)->get()->count();
+        $universityFind = University::where('country',"$country2")->get()->count();
         if($universityFind == 0){
             $url = "http://universities.hipolabs.com/search?country=$country";
             
@@ -57,9 +58,9 @@ class country extends Controller
                 $university->domains = $value['domains'][0];
                 $university->save();
             }
-            $result = University::where('country',$country)->get();
+            $result = University::where('country',$country2)->get();
         }else{
-            $result = University::where('country',$country)->get();
+            $result = University::where('country',$country2)->get();
         }
 
         return response()->json($result);
