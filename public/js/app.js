@@ -2016,7 +2016,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       country: '',
-      loader: '1',
+      loader: '0',
       columns: ['name', 'state-province', 'country', 'web_pages'],
       tableData: [],
       options: {
@@ -2032,28 +2032,19 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  created: function created() {
-    this.getLocalData();
+  created: function created() {// this.getLocalData()
   },
   methods: {
     searchData: function searchData(country) {
       var _this = this;
 
-      this.loader = '1';
-
       if (country != '') {
-        axios.get("http://universities.hipolabs.com/search?country=".concat(country)).then(function (res) {
+        this.loader = '1';
+        axios.get("/api/search?countryname=".concat(country)).then(function (res) {
           _this.loader = '0';
-          _this.tableData = res.data;
-          axios.post('/country', res.data).then(function (res) {
-            setTimeout(function () {
-              _this.getLocalData();
-            }, 100000);
-            console.log(res.data);
-          })["catch"](function (err) {
-            console.log(err);
-          });
+          _this.tableData = res.data; // console.log(res.data);
         })["catch"](function (err) {
+          _this.loader = '0';
           console.log('error', err);
         });
       }
@@ -59977,8 +59968,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vaibhav/Desktop/external/scrapper/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vaibhav/Desktop/external/scrapper/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vaibhav/Desktop/external/scrapper2/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vaibhav/Desktop/external/scrapper2/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

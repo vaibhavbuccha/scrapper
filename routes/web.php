@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::post('/country', 'country@store');
 Route::get('/country', 'country@index');
+Route::get('/api/search', 'country@getUniversity');

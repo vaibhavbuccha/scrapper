@@ -20,7 +20,7 @@
         data(){
             return{
                 country:'',
-                loader: '1',
+                loader: '0',
                 columns: ['name', 'state-province', 'country' , 'web_pages'],
                 tableData: [],
                 options: {
@@ -37,28 +37,20 @@
             }
         },
         created() {
-            this.getLocalData()
+            // this.getLocalData()
         },
         methods:{
             searchData: function(country){
-                this.loader = '1';
                 if(country != ''){
-                    axios.get(`http://universities.hipolabs.com/search?country=${country}`)
+                    this.loader = '1';
+                    axios.get(`/api/search?countryname=${country}`)
                     .then((res) => {
                         this.loader = '0';
                         this.tableData = res.data;
-                        axios.post('/country', res.data)
-                        .then((res)=>{
-                            setTimeout(()=>{
-                                this.getLocalData();
-                            }, 100000);
-                            console.log(res.data)
-                        })
-                        .catch((err) => {
-                            console.log(err)
-                        })
+                        // console.log(res.data);
                     })
                     .catch((err) => {
+                        this.loader = '0';
                         console.log('error',err);
                     });
                 }
