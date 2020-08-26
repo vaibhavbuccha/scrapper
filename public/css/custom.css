@@ -1,0 +1,10 @@
+.busy
+{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+    background: url('/front/public/images/loader.gif') 50% 50% no-repeat rgba(249,249,249,0.5)
+}
